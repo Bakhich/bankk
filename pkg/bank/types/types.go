@@ -3,12 +3,27 @@ package types
 // Money представляет собой денеэную сумму в минималных единиц (центы, копейки, дирамы и т.д)
 type Money int64
 
-// Category представляет собой категорию, в которию был совершен платёж (авто, аптека, рестараны и т.д)
-type Category string
+// Currency представляет код валюты
+type Currency string
 
-// Payment представляет игформацию о платиже
+// Коды валют
+const (
+	TJS Currency = "TJS"
+	RUB Currency = "RUB"
+	USD Currency = "USD"
+)
+
+// PAN представляет номер карты
+type PAN string
+
+// Card представляет информацию о платёжной карте
 type Payment struct {
-	ID       int
-	Amount   Money
-	Category Category
+	ID         int
+	PAN        PAN
+	Balance    Money // Использовали Money
+	MinBalance Money // Использовали Money
+	Currency   Currency
+	Color      string
+	Name       string
+	Active     bool
 }
